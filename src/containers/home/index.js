@@ -1,9 +1,13 @@
 import React, {PureComponent} from "react"
 import styled from "styled-components"
+import {connect} from "react-redux"
+import PropTypes from "prop-types"
 
 import media from "global/media"
 import {greys} from "global/colors"
-import {H1, H2, H3, P} from "../components/labels"
+import {fetchTodaysShows} from "store/actions"
+import {H1, H2, H3, P} from "../../components/labels"
+import Feed from "./Feed"
 
 const TopPanel = styled.div`
   background: ${greys.light};
@@ -18,7 +22,13 @@ const Subheading = styled(H3)`
   color: ${greys.medium};
 `
 
-export default class Home extends PureComponent {
+class Home extends PureComponent {
+  static propTypes = {
+    fetchTodaysShows: PropTypes.func.isRequired
+  }
+  componentDidMount() {
+    this.props.fetchTodaysShows()
+  }
   render() {
     return (
       <>
@@ -27,11 +37,14 @@ export default class Home extends PureComponent {
           <Subheading>Tv show and web series database. <br />
           Create personalised schedules. Episode guide, cast, crew, and character information.</Subheading>
         </TopPanel>
-
-        <P bold>Home Page</P>
-        <P>Home Page</P>
-        <P light>Home Page</P>
+        <Feed />
       </>
     )
   }
 }
+
+const mapDispatch = {
+  fetchTodaysShows
+}
+
+export default connect(null, mapDispatch)(Home)

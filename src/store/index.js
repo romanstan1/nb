@@ -6,9 +6,16 @@ import rootReducer from "./reducers"
 
 export const history = createHistory()
 
+const logger = (store) => (next) => (action) => {
+  const result = next(action)
+  console.log("action.type:: ", action.type)
+  console.log("store:: ", store.getState())
+  return result
+}
+
 const initialState = {}
 const enhancers = []
-const middleware = [thunk, routerMiddleware(history)]
+const middleware = [thunk, logger, routerMiddleware(history)]
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),

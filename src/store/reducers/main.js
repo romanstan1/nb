@@ -1,13 +1,16 @@
-import {DECREMENT} from "../constants"
+import {FETCH_ALL} from "../constants"
 
 const initialState = {
+  allShows: null,
+  page: 1
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case DECREMENT:
+    case FETCH_ALL:
       return {
-        ...state
+        ...state,
+        allShows: action.payload
       }
     default:
       return state
