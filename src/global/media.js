@@ -6,7 +6,6 @@ export const TABLET = 768
 export const PHONE_LANDSCAPE = 576
 export const PHONE = 376
 
-
 const sizes = {
   largeDesktop: `${LARGE_DESKTOP - 1}px`,
   desktop: `${DESKTOP - 1}px`,

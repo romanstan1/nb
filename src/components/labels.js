@@ -1,11 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
-import media from "../global/media"
+import media from "global/media"
+import {greys} from "global/colors"
 
 const StyledH1 = styled.h1`
   font-size: 50px;
   font-weight: 400;
+  color: ${greys.black};
   ${media.tablet`
     font-size: 40px;
   `}
@@ -16,6 +18,7 @@ const StyledH1 = styled.h1`
 const StyledH2 = styled.h2`
   font-size: 30px;
   font-weight: 400;
+  color: ${greys.black};
   ${media.tablet`
     font-size: 25px;
   `}
@@ -26,6 +29,7 @@ const StyledH2 = styled.h2`
 const StyledH3 = styled.h2`
   font-size: 20px;
   font-weight: 400;
+  color: ${greys.dark};
   ${media.tablet`
     font-size: 18px;
   `}
@@ -36,6 +40,7 @@ const StyledH3 = styled.h2`
 const StyledPara = styled.p`
   font-size: 16px;
   font-weight: 400;
+  color: ${greys.dark};
   ${media.tablet`
     font-size: 14px;
   `}
