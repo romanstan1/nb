@@ -43,6 +43,7 @@ export default (state = initialState, action) => {
         selectedShow: {
           ...action.payload,
           rating: Math.floor(Math.random() * 5) + 1
+          // ..As does this^
         }
       }
     // @TODO handle api errors
