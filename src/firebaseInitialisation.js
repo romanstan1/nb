@@ -9,5 +9,6 @@ const firebaseConfig = {
   messagingSenderId: "498301918267",
   appId: "1:498301918267:web:a2b0017b5915abb5"
 }
+// These keys aren't sensitive dont worry!
 
 firebase.initializeApp(firebaseConfig)
