@@ -18,7 +18,11 @@ export default (state = initialState, action) => {
         ...state,
         allShows: action.payload
           .filter((listing) =>
-            listing && listing.show && listing.show.image && listing.show.image.medium
+            listing &&
+            listing.show &&
+            listing.show.image &&
+            listing.show.image.medium &&
+            listing.show.name
           ).map((listing) => ({
             ...listing,
             show: {

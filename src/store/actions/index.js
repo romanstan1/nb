@@ -19,12 +19,17 @@ function formatDate() {
   return [year, month, day].join("-")
 }
 
+const delay = (time) => new Promise((res) => setTimeout(() => res(), time))
+
 async function fetchTvData(url) {
-  return fetch(url)
-    .then((res) => res.json())
-    .catch((error) => {
-      return {error}
-    })
+  const getPromise = fetch(url)
+  const delayPromise = delay(1200)
+  try {
+    const response = await Promise.all([getPromise, delayPromise])
+    return await response[0].json()
+  } catch (error) {
+    return {error}
+  }
 }
 
 export const fetchTodaysShows = () => {
@@ -60,8 +65,6 @@ export const selectShow = (showData) => {
 export const fetchASingleShow = (id) => {
   return async(dispatch) => {
     const data = await fetchTvData(`${URL}/shows/${id}?embed=cast`)
-    console.log("data:", data)
-
     if (data.error) {
       return dispatch({
         type: ERROR_FETCHING_SHOW,

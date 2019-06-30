@@ -24,7 +24,7 @@ const Subheading = styled(H3)`
 
 class Home extends PureComponent {
   static propTypes = {
-    allShows: PropTypes.array.isRequired,
+    allShows: PropTypes.array,
     fetchTodaysShows: PropTypes.func.isRequired
   }
   componentDidMount() {
