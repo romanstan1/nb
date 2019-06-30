@@ -8,8 +8,6 @@ import {H2, H1, P} from "components/labels"
 import Loading from "components/Loading"
 import Nav from "components/Nav"
 import TopPanel from "components/TopPanel"
-
-
 import Rating from "components/Rating"
 import media from "global/media"
 import Cast from "./Cast"

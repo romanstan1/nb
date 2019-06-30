@@ -2,8 +2,6 @@ import React, {PureComponent} from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import {H3} from "components/labels"
-import media from "global/media"
 import {greys} from "global/colors"
 
 const Star = styled.li`

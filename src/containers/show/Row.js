@@ -1,10 +1,6 @@
 import styled from "styled-components"
 
-import {H2, H3, P} from "components/labels"
-import Loading from "components/Loading"
-
 import {greys} from "global/colors"
-
 import media from "global/media"
 
 const RowItem = styled.div`

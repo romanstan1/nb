@@ -2,9 +2,8 @@ import React, {PureComponent} from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import {H2, H3, P} from "components/labels"
+import {P} from "components/labels"
 import Loading from "components/Loading"
-
 import {greys} from "global/colors"
 import Row from "./Row"
 
