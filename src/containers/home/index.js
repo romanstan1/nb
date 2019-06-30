@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import media from "global/media"
 import {greys} from "global/colors"
 import {fetchTodaysShows} from "store/actions"
-import {H2, H3} from "../../components/labels"
+import {H2, H3} from "components/labels"
 import Feed from "./Feed"
 
 const TopPanel = styled.div`
@@ -24,10 +24,11 @@ const Subheading = styled(H3)`
 
 class Home extends PureComponent {
   static propTypes = {
+    allShows: PropTypes.array.isRequired,
     fetchTodaysShows: PropTypes.func.isRequired
   }
   componentDidMount() {
-    this.props.fetchTodaysShows()
+    if (!this.props.allShows) this.props.fetchTodaysShows()
   }
   render() {
     return (
@@ -43,8 +44,12 @@ class Home extends PureComponent {
   }
 }
 
+const mapState = (state) => ({
+  allShows: state.data.allShows
+})
+
 const mapDispatch = {
   fetchTodaysShows
 }
 
-export default connect(null, mapDispatch)(Home)
+export default connect(mapState, mapDispatch)(Home)

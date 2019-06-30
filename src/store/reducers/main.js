@@ -1,8 +1,14 @@
-import {FETCH_ALL, LOAD_MORE} from "../constants"
+import {
+  FETCH_ALL,
+  LOAD_MORE,
+  SELECT_SHOW,
+  FETCH_SHOW
+} from "../constants"
 
 const initialState = {
   allShows: null,
-  page: 1
+  page: 1,
+  selectedShow: null
 }
 
 export default (state = initialState, action) => {
@@ -17,7 +23,8 @@ export default (state = initialState, action) => {
             ...listing,
             show: {
               ...listing.show,
-              rating: Math.floor(Math.random() * 6) // This generates a fake show rating as it's missing from the data
+              rating: Math.floor(Math.random() * 6)
+              // This^ generates a fake show rating as it's missing from the tvmaze data
             }
           }))
       }
@@ -26,6 +33,12 @@ export default (state = initialState, action) => {
         ...state,
         page: state.page + 1
       }
+    case SELECT_SHOW: case FETCH_SHOW:
+      return {
+        ...state,
+        selectedShow: action.payload
+      }
+    // @TODO handle api errors
     default:
       return state
   }

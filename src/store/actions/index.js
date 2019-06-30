@@ -1,8 +1,13 @@
 import {
   FETCH_ALL,
   ERROR_FETCHING_ALL,
-  LOAD_MORE
+  FETCH_SHOW,
+  ERROR_FETCHING_SHOW,
+  LOAD_MORE,
+  SELECT_SHOW
 } from "../constants"
+
+const URL = "http://api.tvmaze.com"
 
 function formatDate() {
   const date = new Date()
@@ -14,9 +19,8 @@ function formatDate() {
   return [year, month, day].join("-")
 }
 
-async function getTodaysShows() {
-  const date = formatDate()
-  return fetch(`http://api.tvmaze.com/schedule?country=US&date=${date}`)
+async function fetchTvData(url) {
+  return fetch(url)
     .then((res) => res.json())
     .catch((error) => {
       return {error}
@@ -25,7 +29,8 @@ async function getTodaysShows() {
 
 export const fetchTodaysShows = () => {
   return async(dispatch) => {
-    const data = await getTodaysShows()
+    const date = formatDate()
+    const data = await fetchTvData(`${URL}/schedule?country=US&date=${date}`)
     if (data.error) {
       return dispatch({
         type: ERROR_FETCHING_ALL,
@@ -43,4 +48,29 @@ export const loadMore = () => {
   return (dispatch) => dispatch({
     type: LOAD_MORE
   })
+}
+
+export const selectShow = (showData) => {
+  return (dispatch) => dispatch({
+    type: SELECT_SHOW,
+    payload: showData
+  })
+}
+
+export const fetchASingleShow = (id) => {
+  return async(dispatch) => {
+    const data = await fetchTvData(`${URL}/shows/${id}?embed=cast`)
+    console.log("data:", data)
+
+    if (data.error) {
+      return dispatch({
+        type: ERROR_FETCHING_SHOW,
+        payload: data.error
+      })
+    }
+    return dispatch({
+      type: FETCH_SHOW,
+      payload: data
+    })
+  }
 }

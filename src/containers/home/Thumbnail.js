@@ -15,6 +15,7 @@ const Wrapper = styled.li`
   border: 1px solid black;
   flex-direction: column;
   width: 210px;
+  cursor: pointer;
 `
 
 export default class Thumbnail extends PureComponent {
@@ -24,14 +25,13 @@ export default class Thumbnail extends PureComponent {
   }
   render() {
     const {listing, handleClick} = this.props
-    const {name, image, id, rating} = listing.show
+    const {name, image, rating} = listing.show
 
     return (
-      <Wrapper onClick={handleClick} data-id={id}>
+      <Wrapper onClick={() => handleClick(listing.show)}>
         <img src={image.medium} alt={name} />
         <H3 light>{rating}</H3>
         <H3>{name}</H3>
-        {/* <H3>{id}</H3> */}
       </Wrapper>
     )
   }

@@ -1,3 +1,6 @@
 export const FETCH_ALL = "FETCH_ALL"
 export const ERROR_FETCHING_ALL = "ERROR_FETCHING_ALL"
 export const LOAD_MORE = "LOAD_MORE"
+export const ERROR_FETCHING_SHOW = "ERROR_FETCHING_SHOW"
+export const FETCH_SHOW = "FETCH_SHOW"
+export const SELECT_SHOW = "SELECT_SHOW"

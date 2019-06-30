@@ -2,12 +2,14 @@ import React, {PureComponent} from "react"
 import styled from "styled-components"
 import {connect} from "react-redux"
 import PropTypes from "prop-types"
+import {push} from "connected-react-router"
 
 import media from "global/media"
 import {greys} from "global/colors"
 import Masonry from "react-masonry-component"
-import {H3, P} from "components/labels"
-import {loadMore} from "store/actions"
+import {H3} from "components/labels"
+import Loading from "components/Loading"
+import {loadMore, selectShow} from "store/actions"
 import Thumbnail from "./Thumbnail"
 
 const Subheading = styled(H3)`
@@ -21,10 +23,7 @@ const Wrapper = styled.div`
     padding: 10px 10px;
   `}
 `
-const Loading = styled.div`
-  text-align: center;
-  padding: 50px 0;
-`
+
 const LoadMoreButton = styled.div`
   text-align: center;
   padding: 10px 20px;
@@ -46,20 +45,24 @@ class Feed extends PureComponent {
   static propTypes = {
     allShows: PropTypes.array,
     page: PropTypes.number.isRequired,
-    loadMore: PropTypes.func.isRequired
+    loadMore: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
+    selectShow: PropTypes.func.isRequired
   }
+
   loadMore = () => {
     this.props.loadMore()
   }
-  handleClick = (e) => {
-    console.log("e.target.value:", e.target.value)
+
+  handleClick = (show) => {
+    this.props.selectShow(show)
+    this.props.push(`/${show.id}`)
   }
+
   render() {
     const {allShows, page} = this.props
     if (!allShows) {
-      return (
-        <Loading><P>Loading...</P></Loading>
-      )
+      return <Loading />
     }
     const thumbnails = allShows.slice(0, page * PAGE_SIZE).map((listing) =>
       <Thumbnail
@@ -89,7 +92,9 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = {
-  loadMore
+  loadMore,
+  push,
+  selectShow
 }
 
 export default connect(mapState, mapDispatch)(Feed)
