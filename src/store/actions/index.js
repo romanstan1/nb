@@ -15,14 +15,14 @@ function formatDate() {
 
 async function getTodaysShows() {
   const date = formatDate()
-  return fetch(`http://api.tvmaze.com/schedule?country=GB&date=${date}`)
+  return fetch(`http://api.tvmaze.com/schedule?country=US&date=${date}`)
     .then((res) => res.json())
     .catch((error) => {
       return {error}
     })
 }
 
-export function fetchTodaysShows() {
+export const fetchTodaysShows = () => {
   return async(dispatch) => {
     const data = await getTodaysShows()
     if (data.error) {
@@ -34,6 +34,14 @@ export function fetchTodaysShows() {
     return dispatch({
       type: FETCH_ALL,
       payload: data
+    })
+  }
+}
+
+export const loadMore = () => {
+  return (dispatch) => {
+    return dispatch({
+      type: LOAD_MORE
     })
   }
 }

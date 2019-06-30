@@ -10,7 +10,9 @@ export default (state = initialState, action) => {
     case FETCH_ALL:
       return {
         ...state,
-        allShows: action.payload
+        allShows: action.payload.filter((listing) => {
+          return listing && listing.show && listing.show.image && listing.show.image.medium
+        })
       }
     default:
       return state

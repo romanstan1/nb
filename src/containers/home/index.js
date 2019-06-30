@@ -6,19 +6,19 @@ import PropTypes from "prop-types"
 import media from "global/media"
 import {greys} from "global/colors"
 import {fetchTodaysShows} from "store/actions"
-import {H1, H2, H3, P} from "../../components/labels"
+import {H2, H3} from "../../components/labels"
 import Feed from "./Feed"
 
 const TopPanel = styled.div`
   background: ${greys.light};
   padding: 50px;
   ${media.tablet`
-    padding: 20px 10px;
+    padding: 20px;
   `}
 `
 
 const Subheading = styled(H3)`
-  padding: 20px 0 40px 0;
+  padding: 20px 0 20px 0;
   color: ${greys.medium};
 `
 

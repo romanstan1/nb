@@ -8,8 +8,9 @@ export const history = createHistory()
 
 const logger = (store) => (next) => (action) => {
   const result = next(action)
-  console.log("action.type:: ", action.type)
-  console.log("store:: ", store.getState())
+  console.log("%c Type: ", "background: #222; color: #fff", action.type)
+  console.log("%c Store: ", "background: #222; color: #bada55", store.getState().data)
+  console.log(" ")
   return result
 }
 
