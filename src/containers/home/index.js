@@ -20,6 +20,7 @@ class Home extends PureComponent {
     fetchTodaysShows: PropTypes.func.isRequired
   }
   componentDidMount() {
+    window.scrollTo(0, 0)
     if (!this.props.allShows) this.props.fetchTodaysShows()
   }
   render() {

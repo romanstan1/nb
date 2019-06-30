@@ -81,6 +81,7 @@ class Show extends PureComponent {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     const {match} = this.props
     this.props.fetchASingleShow(match.params.id)
   }
