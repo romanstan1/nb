@@ -3,19 +3,11 @@ import styled from "styled-components"
 import {connect} from "react-redux"
 import PropTypes from "prop-types"
 
-import media from "global/media"
 import {greys} from "global/colors"
 import {fetchTodaysShows} from "store/actions"
 import {H2, H3} from "components/labels"
+import TopPanel from "components/TopPanel"
 import Feed from "./Feed"
-
-const TopPanel = styled.div`
-  background: ${greys.light};
-  padding: 50px;
-  ${media.tablet`
-    padding: 20px;
-  `}
-`
 
 const Subheading = styled(H3)`
   padding: 20px 0 20px 0;

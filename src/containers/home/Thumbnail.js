@@ -1,21 +1,27 @@
 import React, {PureComponent} from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
-import {H3} from "../../components/labels"
+
+import {H3} from "components/labels"
+import Rating from "components/Rating"
+import media from "global/media"
 
 const Wrapper = styled.li`
-  img {
-    display: block;
-    width: 100%;
-  }
   list-style: none;
-  padding: 0px;
-  margin: 10px;
   display: flex-inline;
   border: 1px solid black;
   flex-direction: column;
   width: 210px;
   cursor: pointer;
+  padding: 0px;
+  margin: 20px;
+  ${media.tablet`
+    margin: 5px;
+  `}
+  img {
+    display: block;
+    width: 100%;
+  }
 `
 
 export default class Thumbnail extends PureComponent {
@@ -31,6 +37,7 @@ export default class Thumbnail extends PureComponent {
       <Wrapper onClick={() => handleClick(listing.show)}>
         <img src={image.medium} alt={name} />
         <H3 light>{rating}</H3>
+        <Rating value={rating} />
         <H3>{name}</H3>
       </Wrapper>
     )

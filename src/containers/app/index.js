@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react"
 
+import Footer from "components/Footer"
 import Routes from "./Routes"
 
 export default class App extends PureComponent {
@@ -9,6 +10,7 @@ export default class App extends PureComponent {
         <main>
           <Routes />
         </main>
+        <Footer />
       </>
     )
   }

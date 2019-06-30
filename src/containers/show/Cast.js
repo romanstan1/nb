@@ -10,7 +10,7 @@ const CastItem = styled.div`
 
 export default class Cast extends PureComponent {
   static propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object
   }
 
   render() {
@@ -20,7 +20,7 @@ export default class Cast extends PureComponent {
       <>
         {
           data.cast.map(({person}, i) => {
-            return <CastItem key={person.id + i}> {person.name} </CastItem>
+            return <CastItem key={`${person.id}-${i}`}> {person.name} </CastItem>
           })
         }
       </>

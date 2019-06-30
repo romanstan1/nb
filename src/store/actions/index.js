@@ -23,7 +23,7 @@ const delay = (time) => new Promise((res) => setTimeout(() => res(), time))
 
 async function fetchTvData(url) {
   const getPromise = fetch(url)
-  const delayPromise = delay(1200)
+  const delayPromise = delay(600)
   try {
     const response = await Promise.all([getPromise, delayPromise])
     return await response[0].json()
