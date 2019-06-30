@@ -26,6 +26,8 @@ const Wrapper = styled.div`
 
 const LoadMoreButton = styled.div`
   text-align: center;
+  margin: 0 auto;
+  width: 150px;
   padding: 10px 20px;
   cursor: pointer;
   color: ${greys.black};
@@ -36,7 +38,8 @@ const LoadMoreButton = styled.div`
 `
 
 const masonryOptions = {
-  transitionDuration: 500
+  transitionDuration: 500,
+  isFitWidth: true
 }
 
 const PAGE_SIZE = 10

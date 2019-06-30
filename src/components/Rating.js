@@ -8,7 +8,7 @@ import {greys} from "global/colors"
 
 const Star = styled.li`
   list-style: none;
-  margin: 50px 20px 50px 0;
+  margin: 50px 40px 50px 0;
   position: relative;
   display: block;
   color: red;
@@ -50,7 +50,7 @@ const Star = styled.li`
 `
 
 const Wrapper = styled.div`
-  margin-top: 5px;
+  margin: 15px 0 10px 2px;
   height: 25px;
   position: relative;
   display: flex;
@@ -66,17 +66,18 @@ const Wrapper = styled.div`
 
 export default class Rating extends PureComponent {
   static propTypes = {
-    value: PropTypes.number.isRequired
+    value: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
   }
   render() {
-    const {value} = this.props
+    const {value, id} = this.props
     const activeStars = Array(value).fill("")
     const remainingStars = Array(5 - value).fill("")
     return (
       <Wrapper>
         <ul>
-          {activeStars.map(() => <Star active />)}
-          {remainingStars.map(() => <Star />)}
+          {activeStars.map((val, i) => <Star key={`star-active${i}-${id}`} active />)}
+          {remainingStars.map((val, i) => <Star key={`star-${i}-${id}`} />)}
         </ul>
       </Wrapper>
     )

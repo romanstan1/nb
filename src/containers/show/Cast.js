@@ -2,10 +2,28 @@ import React, {PureComponent} from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import {H2, H3} from "components/labels"
+import {H2, H3, P} from "components/labels"
 import Loading from "components/Loading"
 
-const CastItem = styled.div`
+import {greys} from "global/colors"
+import Row from "./Row"
+
+const ProfilePicture = styled.div`
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  display: flex;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%; 
+  }
+  > div {
+    background: ${greys.light};
+    width: 50px;
+    height: 50px;
+    border-radius: 100%; 
+  }
 `
 
 export default class Cast extends PureComponent {
@@ -19,9 +37,17 @@ export default class Cast extends PureComponent {
     return (
       <>
         {
-          data.cast.map(({person}, i) => {
-            return <CastItem key={`${person.id}-${i}`}> {person.name} </CastItem>
-          })
+          data.cast.map(({person, character}, i) =>
+            <Row key={`${person.id}-${i}`}>
+              <ProfilePicture>
+                {person.image
+                  ? <img src={person.image.medium} alt={person.name} />
+                  : <div />}
+              </ProfilePicture>
+              <P>{person.name} </P>
+              <P light>{character.name} </P>
+            </Row>
+          )
         }
       </>
     )

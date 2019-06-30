@@ -7,6 +7,10 @@ const TopPanel = styled.div`
   background: ${greys.light};
   padding: 50px 50px 200px;
   margin-bottom: -200px;
+  ${(props) => (props.noMargin && `
+     padding: 50px;
+     margin-bottom: 0px;
+  `)}
   ${media.tablet`
     margin-bottom: 0px;
     padding: 20px;

@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
             ...listing,
             show: {
               ...listing.show,
-              rating: Math.floor(Math.random() * 6)
+              rating: Math.floor(Math.random() * 5) + 1
               // This^ generates a fake show rating as it's missing from the tvmaze data
             }
           }))
@@ -40,7 +40,10 @@ export default (state = initialState, action) => {
     case SELECT_SHOW: case FETCH_SHOW:
       return {
         ...state,
-        selectedShow: action.payload
+        selectedShow: {
+          ...action.payload,
+          rating: Math.floor(Math.random() * 5) + 1
+        }
       }
     // @TODO handle api errors
     default:

@@ -20,6 +20,7 @@ const Wrapper = styled.header`
     display: inline-block;
     padding: 5px 20px;
     text-decoration: none;
+    font-weight: 300;
     color: ${greys.medium};
     &:hover {
       color:${greys.black};
