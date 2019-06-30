@@ -42,44 +42,45 @@ const masonryOptions = {
 
 const PAGE_SIZE = 10
 
-const imagesLoadedOptions = {background: ".my-bg-image-el"}
-
 class Feed extends PureComponent {
-   static propTypes = {
-     allShows: PropTypes.array.isRequired,
-     page: PropTypes.number.isRequired
-   }
-   loadMore = () => {
-     this.props.loadMore()
-   }
-   render() {
-     const {allShows, page} = this.props
-     if (!allShows) {
-       return (
-         <Loading><P>Loading...</P></Loading>
-       )
-     }
-     const thumbnails = allShows.slice(0, page * PAGE_SIZE).map((listing) =>
-       <Thumbnail
-         rating={2}
-         name={listing.show.name}
-         image={listing.show.image} />
-     )
-     return (
-       <Wrapper>
-         <Subheading>Today&apos;s shows</Subheading>
-         <Masonry
-           elementType="ul" // default 'div'
-           options={masonryOptions} // default {}
-           disableImagesLoaded={false} // default false
-           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-           imagesLoadedOptions={imagesLoadedOptions}>
-           {thumbnails}
-         </Masonry>
-         <LoadMoreButton onClick={this.loadMore}>Load more</LoadMoreButton>
-       </Wrapper>
-     )
-   }
+  static propTypes = {
+    allShows: PropTypes.array,
+    page: PropTypes.number.isRequired,
+    loadMore: PropTypes.func.isRequired
+  }
+  loadMore = () => {
+    this.props.loadMore()
+  }
+  handleClick = (e) => {
+    console.log("e.target.value:", e.target.value)
+  }
+  render() {
+    const {allShows, page} = this.props
+    if (!allShows) {
+      return (
+        <Loading><P>Loading...</P></Loading>
+      )
+    }
+    const thumbnails = allShows.slice(0, page * PAGE_SIZE).map((listing) =>
+      <Thumbnail
+        key={listing.id}
+        handleClick={this.handleClick}
+        listing={listing} />
+    )
+    return (
+      <Wrapper>
+        <Subheading>Today&apos;s shows</Subheading>
+        <Masonry
+          elementType="ul"
+          options={masonryOptions}
+          disableImagesLoaded={false}
+          updateOnEachImageLoad={false}>
+          {thumbnails}
+        </Masonry>
+        <LoadMoreButton onClick={this.loadMore}>Load more</LoadMoreButton>
+      </Wrapper>
+    )
+  }
 }
 
 const mapState = (state) => ({

@@ -1,6 +1,7 @@
 import {
   FETCH_ALL,
-  ERROR_FETCHING_ALL
+  ERROR_FETCHING_ALL,
+  LOAD_MORE
 } from "../constants"
 
 function formatDate() {
@@ -39,9 +40,7 @@ export const fetchTodaysShows = () => {
 }
 
 export const loadMore = () => {
-  return (dispatch) => {
-    return dispatch({
-      type: LOAD_MORE
-    })
-  }
+  return (dispatch) => dispatch({
+    type: LOAD_MORE
+  })
 }
