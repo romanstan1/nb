@@ -6,6 +6,7 @@ import {ConnectedRouter} from "connected-react-router"
 import store, {history} from "./store"
 import App from "./containers/app"
 import "./global/index.css"
+import "./firebaseInitialisation"
 
 const target = document.querySelector("#root")
 
